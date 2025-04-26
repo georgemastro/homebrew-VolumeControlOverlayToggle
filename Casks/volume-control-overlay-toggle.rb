@@ -11,10 +11,16 @@ cask "volume-control-overlay-toggle" do
 
   app "VolumeControlOverlayToggle.app"
 
-  # Disable quarantine for unnotarized apps
+  # Handle quarantine more gracefully
   postflight do
-    system_command "/usr/bin/xattr",
-                  args: ["-d", "com.apple.quarantine", "#{appdir}/VolumeControlOverlayToggle.app"],
-                  sudo: true
+    set_permissions "#{appdir}/VolumeControlOverlayToggle.app", "0755"
+
+    quarantine_attribute = `xattr -l "#{appdir}/VolumeControlOverlayToggle.app" | grep com.apple.quarantine`
+
+    if quarantine_attribute.strip.length > 0
+      system_command "/usr/bin/xattr",
+                    args: ["-d", "com.apple.quarantine", "#{appdir}/VolumeControlOverlayToggle.app"],
+                    sudo: true
+    end
   end
 end
