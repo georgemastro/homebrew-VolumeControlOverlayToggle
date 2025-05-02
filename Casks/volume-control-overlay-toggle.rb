@@ -1,6 +1,6 @@
 cask "volume-control-overlay-toggle" do
   version "1.0.9"
-  sha256 "07b4bcf58fdd991d9d844f58975a5b4256e5db4ac7b6e708b70bad6cce10d559"
+  sha256 "01fcebc79e8674d5f1b8049e84d5015f20a78edcc97fa5d38b6e84fdc80f92ec"
 
   url "https://github.com/georgemastro/VolumeControlOverlayToggle/releases/download/v#{version}/VolumeControlOverlayToggle.zip"
   name "VolumeControlOverlayToggle"
