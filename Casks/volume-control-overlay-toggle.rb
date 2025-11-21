@@ -9,5 +9,11 @@ cask "volume-control-overlay-toggle" do
 
   depends_on macos: ">= :big_sur"
 
+  # Remove quarantine attribute before moving to Applications
+  preflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-rd", "com.apple.quarantine", "#{staged_path}/VolumeControlOverlayToggle.app"]
+  end
+
   app "VolumeControlOverlayToggle.app"
 end
